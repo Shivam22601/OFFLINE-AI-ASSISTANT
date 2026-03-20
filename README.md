@@ -13,11 +13,6 @@
 ---
 
 
-
-> Left: **Neural Chat** with Mistral LLM | Right: **Vision Scan** with real-time object detection (COCO-SSD)
-
----
-
 ## 📌 What Is This?
 
 **Offline AI Assistant** is a self-hosted AI application that runs entirely on your local machine. It combines a React-based frontend with a Node.js backend and uses **Ollama** to serve the **Mistral LLM** — giving you a powerful conversational AI without sending a single byte to the cloud.
