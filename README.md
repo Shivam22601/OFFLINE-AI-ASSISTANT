@@ -396,8 +396,8 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## 📬 Connect
 
-- GitHub: [@your-username](https://github.com/your-username)
-- LinkedIn: [your-profile](https://linkedin.com/in/your-profile)
+- GitHub: [@your-username](https://github.com/Shivam22601)
+- LinkedIn: [your-profile](www.linkedin.com/in/shivam-mishra-b9ba93274)
 
 ---
 
