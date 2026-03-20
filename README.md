@@ -24,7 +24,7 @@
 ## 🎥 Demo Video
 
 <p align="center">
-  <a href="https://youtu.be/zapYIX-w0ds?si=Ynq1uRGe-mBz0_lR">
+  <a href="https://youtu.be/zapYIX-w0ds?si=FOZqF8yqzeMHQ1qE">
     <img src="https://img.youtube.com/vi/zapYIX-w0ds/maxresdefault.jpg" alt="Watch Demo Video" width="80%" />
   </a>
 </p>
