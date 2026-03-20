@@ -12,9 +12,7 @@
 
 ---
 
-## 🖼️ Preview
 
-![Offline AI Assistant UI](./screenshot.png)
 
 > Left: **Neural Chat** with Mistral LLM | Right: **Vision Scan** with real-time object detection (COCO-SSD)
 
