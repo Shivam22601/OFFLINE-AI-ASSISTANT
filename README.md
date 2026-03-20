@@ -7,6 +7,8 @@
 ![Node](https://img.shields.io/badge/Backend-Node.js-339933?style=flat-square&logo=node.js)
 ![Ollama](https://img.shields.io/badge/AI_Runtime-Ollama-black?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)
+![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen?style=flat-square)
+![Offline](https://img.shields.io/badge/Works-Offline-blue?style=flat-square)
 
 ---
 
@@ -28,29 +30,49 @@ It also includes a **real-time object detection** module powered by TensorFlow.j
 
 ## ✨ Features
 
-| Feature | Description |
-|---|---|
-| 💬 **AI Chat** | Real-time conversation with Mistral LLM via Ollama |
-| 👁️ **Vision Scan** | Live object detection using your webcam + TensorFlow.js |
-| 🔒 **100% Private** | All processing happens on your machine — nothing leaves it |
-| ⚡ **No API Cost** | Completely free to run after initial setup |
-| 🌐 **Works Offline** | No internet required after model download |
+| Feature | Description | Status |
+|---|---|---|
+| 💬 **AI Chat** | Real-time conversation with Mistral LLM via Ollama | ✅ Live |
+| 👁️ **Vision Scan** | Live object detection using your webcam + TensorFlow.js | ✅ Live |
+| 🔒 **100% Private** | All processing happens on your machine — nothing leaves it | ✅ Live |
+| ⚡ **No API Cost** | Completely free to run after initial setup | ✅ Live |
+| 🌐 **Works Offline** | No internet required after model download | ✅ Live |
+| 🎤 **Voice Input** | Speech-to-Text support | 🔜 Coming |
+| 📱 **Mobile PWA** | Progressive Web App for mobile | 🔜 Coming |
 
 ---
 
 ## 🏗️ Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Frontend | React.js, Tailwind CSS |
-| Backend | Node.js, Express.js |
-| AI Runtime | Ollama |
-| Language Model | Mistral |
-| Vision Model | COCO-SSD via TensorFlow.js |
+| Layer | Technology | Purpose |
+|---|---|---|
+| Frontend | React.js | UI components & state management |
+| Styling | Tailwind CSS | Responsive design |
+| Backend | Node.js + Express.js | API server & request routing |
+| AI Runtime | Ollama | Local LLM process manager |
+| Language Model | Mistral 7B | Natural language responses |
+| Vision Runtime | TensorFlow.js | In-browser ML inference |
+| Vision Model | COCO-SSD | Real-time object detection |
+| 3D Background | Three.js | Animated UI background |
 
 ---
 
-## 🔄 System Workflow
+## 🌐 Offline vs Online AI — Why It Matters
+
+| Factor | ☁️ Cloud AI (ChatGPT, Gemini) | 💻 This Project (Offline AI) |
+|---|---|---|
+| 💸 Cost | Paid API per request | Free after setup |
+| 🔒 Privacy | Data sent to external servers | 100% on your machine |
+| 🌐 Internet | Required always | Only for setup |
+| ⚡ Latency | Depends on network | Local — no network delay |
+| 🧠 Model Control | Fixed by provider | You choose the model |
+| 📦 Data Ownership | Provider stores logs | You own everything |
+| 🔌 Availability | Server downtime possible | Always available |
+| 🛠️ Customization | Limited | Full control |
+
+---
+
+## 🔄 System Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────┐
@@ -89,6 +111,86 @@ It also includes a **real-time object detection** module powered by TensorFlow.j
 
 ---
 
+## 💬 Chat Request Flow
+
+```
+User types message
+       │
+       ▼
+React Frontend (Chat.jsx)
+       │
+       │  POST /api/chat
+       ▼
+Express Backend (server.js)
+       │
+       │  HTTP request to Ollama
+       ▼
+ollamaService.js
+       │
+       │  localhost:11434/api/generate
+       ▼
+Ollama Runtime
+       │
+       │  inference
+       ▼
+Mistral LLM Model
+       │
+       │  generated text (streamed)
+       ▼
+Back to Frontend → Displayed in Chat UI
+```
+
+---
+
+## 👁️ Vision Scan Flow
+
+```
+User clicks "Init Cam"
+       │
+       ▼
+Browser asks camera permission
+       │
+       ▼
+Webcam stream starts (MediaDevices API)
+       │
+       ▼
+User clicks "Scan"
+       │
+       ▼
+TensorFlow.js loads COCO-SSD model
+       │  (from /public/coco-ssd — fully local)
+       ▼
+Model runs inference on video frame
+       │
+       ▼
+Detected objects + confidence % returned
+       │
+       ▼
+Bounding boxes drawn on canvas
+       │
+       ▼
+Labels shown below (e.g. PERSON 91%)
+
+⚠️  No data leaves the browser at any point
+```
+
+---
+
+## 🧠 Offline Use Cases
+
+| Use Case | Description |
+|---|---|
+| 🔐 Sensitive Data Analysis | Analyze private documents without cloud exposure |
+| 🏥 Medical / Legal Queries | Ask sensitive questions with zero data leak risk |
+| ✈️ Travel / No Internet Zones | Full AI access on flights, remote areas |
+| 🏫 Education & Learning | Students using AI without subscription costs |
+| 🏭 Enterprise Air-Gap Env | Orgs where internet access is restricted |
+| 👨‍💻 Local Dev Assistant | Code help without sending proprietary code to APIs |
+| 🎥 Offline Vision Detection | Security camera analysis without cloud upload |
+| 🧪 AI Research & Testing | Run and modify models freely without API limits |
+
+---
+
 ## 📂 Project Structure
 
 ```
@@ -115,6 +217,7 @@ offline-ai-assistant/
 ├── public/
 │   └── coco-ssd/                  # Local TensorFlow model files
 │
+├── screenshot.png                 # Preview image
 └── README.md
 ```
 
@@ -122,60 +225,80 @@ offline-ai-assistant/
 
 ## ⚙️ Getting Started
 
-### Prerequisites
+### 📋 Prerequisites
 
-- [Node.js](https://nodejs.org/) v18+
-- [Ollama](https://ollama.com) installed on your machine
+| Requirement | Version | Link |
+|---|---|---|
+| Node.js | v18+ | [nodejs.org](https://nodejs.org) |
+| npm | v9+ | Comes with Node.js |
+| Ollama | Latest | [ollama.com](https://ollama.com) |
+| RAM | 8GB+ recommended | — |
+| Storage | ~5GB for Mistral model | — |
 
 ---
 
-### 1. Clone the Repository
+### 🚀 Setup — Step by Step
 
+**Step 1 — Clone the repo**
 ```bash
 git clone https://github.com/your-username/offline-ai-assistant.git
 cd offline-ai-assistant
 ```
 
-### 2. Install Ollama & Pull Mistral
-
+**Step 2 — Install & start Ollama**
 ```bash
-# Install from https://ollama.com, then:
+# Download from https://ollama.com and install, then:
 ollama pull mistral
+
+# Verify it works:
+ollama run mistral "hello"
 ```
 
-### 3. Install Backend Dependencies
-
+**Step 3 — Start the backend**
 ```bash
 cd backend
 npm install
-```
-
-### 4. Install Frontend Dependencies
-
-```bash
-cd ../frontend
-npm install
-```
-
-### 5. Start the Backend
-
-```bash
-cd backend
 node server.js
 ```
+> ✅ You should see: `Server running on port 3000`
 
-### 6. Start the Frontend
-
+**Step 4 — Start the frontend**
 ```bash
+# Open a new terminal tab
 cd frontend
+npm install
 npm run dev
 ```
+> ✅ You should see: `Local: http://localhost:5173`
 
-### 7. Open in Browser
-
+**Step 5 — Open in browser**
 ```
 http://localhost:5173
 ```
+
+---
+
+### 🖥️ What Runs Where
+
+| Service | Command | Port | Terminal |
+|---|---|---|---|
+| Ollama runtime | `ollama run mistral` | 11434 | Tab 1 |
+| Node backend | `node server.js` | 3000 | Tab 2 |
+| React frontend | `npm run dev` | 5173 | Tab 3 |
+
+> All three must be running at the same time for the app to work.
+
+---
+
+### ⚠️ Common Errors & Fixes
+
+| Error | Cause | Fix |
+|---|---|---|
+| `Cannot connect to Ollama` | Ollama not running | Run `ollama run mistral` first |
+| `Port 3000 already in use` | Another process on 3000 | Kill it: `lsof -ti:3000 \| xargs kill` |
+| `Camera not found` | Browser permission denied | Allow camera in browser settings |
+| `Model not found` | Mistral not pulled | Run `ollama pull mistral` |
+| Slow responses | Low RAM / CPU | Close other apps, use GPU if available |
 
 ---
 
@@ -183,6 +306,21 @@ http://localhost:5173
 
 - **Neural Chat** — Type your prompt and get AI responses generated locally by Mistral.
 - **Vision Scan** — Allow camera access and watch the model detect real-world objects in real time.
+
+---
+
+## 🤖 Supported Ollama Models
+
+You can swap Mistral for any of these by changing the model name in `ollamaService.js`:
+
+| Model | Size | Best For |
+|---|---|---|
+| `mistral` | ~4GB | General chat — used in this project |
+| `llama3` | ~4.7GB | Reasoning & instruction following |
+| `phi3` | ~2.3GB | Fast responses, low RAM usage |
+| `gemma` | ~5GB | Google's open model |
+| `codellama` | ~3.8GB | Code generation & debugging |
+| `neural-chat` | ~4GB | Conversational AI |
 
 ---
 
@@ -194,24 +332,31 @@ Unlike cloud-based AI tools, this project:
 - ✅ Sends **no data** over the internet during inference
 - ✅ Runs the full model pipeline **on your hardware**
 - ✅ Works in **airplane mode**
+- ✅ No account, no login, no tracking
 
 ---
 
 ## 🧪 Known Challenges
 
-- LLM inference speed depends on your hardware (CPU/GPU)
-- Browser-based vision models have memory limitations
-- Ollama must be running before starting the backend
+| Challenge | Details |
+|---|---|
+| Hardware dependency | LLM speed depends on your CPU/GPU/RAM |
+| First load time | COCO-SSD model takes a few seconds to load in browser |
+| Startup order | Ollama must be running before the backend starts |
+| Memory usage | Mistral uses ~4–5GB RAM while running |
 
 ---
 
 ## 🔮 Roadmap
 
-- [ ] 🎤 Voice input/output (Speech-to-Text + TTS)
-- [ ] 📱 PWA support for mobile devices
-- [ ] 🧠 Support for additional Ollama models (LLaMA 3, Phi-3, Gemma)
-- [ ] 🗂️ Persistent chat history with local storage
-- [ ] 🔍 Advanced vision model integration
+| Feature | Priority | Status |
+|---|---|---|
+| 🎤 Voice input/output (STT + TTS) | High | 🔜 Planned |
+| 📱 PWA / Mobile support | Medium | 🔜 Planned |
+| 🗂️ Persistent chat history | Medium | 🔜 Planned |
+| 🧠 Multi-model switcher UI | High | 🔜 Planned |
+| 🔍 Advanced vision models | Low | 🔜 Planned |
+| 🌐 LAN sharing (local network) | Medium | 🔜 Planned |
 
 ---
 
