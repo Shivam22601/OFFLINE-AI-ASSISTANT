@@ -10,6 +10,14 @@
 
 ---
 
+## 🖼️ Preview
+
+![Offline AI Assistant UI](./screenshot.png)
+
+> Left: **Neural Chat** with Mistral LLM | Right: **Vision Scan** with real-time object detection (COCO-SSD)
+
+---
+
 ## 📌 What Is This?
 
 **Offline AI Assistant** is a self-hosted AI application that runs entirely on your local machine. It combines a React-based frontend with a Node.js backend and uses **Ollama** to serve the **Mistral LLM** — giving you a powerful conversational AI without sending a single byte to the cloud.
@@ -39,6 +47,45 @@ It also includes a **real-time object detection** module powered by TensorFlow.j
 | AI Runtime | Ollama |
 | Language Model | Mistral |
 | Vision Model | COCO-SSD via TensorFlow.js |
+
+---
+
+## 🔄 System Workflow
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                         USER                            │
+│           Interacts via browser at localhost:5173       │
+└────────────────┬────────────────────────┬───────────────┘
+                 │                        │
+                 ▼                        ▼
+┌───────────────────────┐   ┌───────────────────────────┐
+│      NEURAL CHAT      │   │       VISION SCAN         │
+│   React.js + Tailwind │   │   React.js + Tailwind     │
+└──────────┬────────────┘   └────────────┬──────────────┘
+           │                             │
+           ▼                             ▼
+┌───────────────────────┐   ┌───────────────────────────┐
+│   NODE.JS BACKEND     │   │      TENSORFLOW.JS        │
+│  Express + ollama     │   │  Runs entirely in-browser │
+│     Service.js        │   │     (no server needed)    │
+└──────────┬────────────┘   └────────────┬──────────────┘
+           │                             │
+           ▼                             ▼
+┌───────────────────────┐   ┌───────────────────────────┐
+│   OLLAMA RUNTIME      │   │      COCO-SSD MODEL       │
+│  Local AI process     │   │  Object detection, local  │
+└──────────┬────────────┘   └───────────────────────────┘
+           │
+           ▼
+┌───────────────────────┐
+│     MISTRAL LLM       │
+│  Offline language     │
+│       model           │
+└───────────────────────┘
+
+← ← ← Response flows back up the same chain ← ← ←
+```
 
 ---
 
