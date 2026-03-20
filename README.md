@@ -12,6 +12,13 @@
 
 ---
 
+## 🖼️ Preview
+
+![Offline AI Assistant UI](./PHOTO-2026-03-20-22-44-33.jpg)
+
+> Left: **Neural Chat** with Mistral LLM | Right: **Vision Scan** with real-time object detection (COCO-SSD)
+
+---
 
 ## 📌 What Is This?
 
@@ -389,8 +396,8 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## 📬 Connect
 
-- GitHub: [@your-username](https://github.com/Shivam22601)
-- LinkedIn: [your-profile](www.linkedin.com/in/shivam-mishra-b9ba93274)
+- GitHub: [@your-username](https://github.com/your-username)
+- LinkedIn: [your-profile](https://linkedin.com/in/your-profile)
 
 ---
 
